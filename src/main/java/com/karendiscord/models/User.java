@@ -26,5 +26,14 @@ public class User {
     private String username;
     @Column(name = "user_password", columnDefinition = "text")
     private String password;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
+    public User(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+    }
 }
