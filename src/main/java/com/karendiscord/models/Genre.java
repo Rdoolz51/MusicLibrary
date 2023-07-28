@@ -20,4 +20,8 @@ public class Genre {
 
     @Column(name = "genre_name", columnDefinition = "text")
     private String name;
+
+    public Genre(String name){
+        this.name = name;
+    }
 }

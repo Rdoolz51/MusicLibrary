@@ -18,6 +18,12 @@ public class Artist {
     @Column(name = "artist_id")
     private int id;
 
-    @Column(name = "artist_name", columnDefinition = "text")
+    @Column(name = "artist_name", columnDefinition = "text", unique = true)
     private String name;
+
+
+    public Artist(String name){
+        this.name = name;
+    }
+
 }

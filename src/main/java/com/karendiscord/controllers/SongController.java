@@ -1,5 +1,6 @@
 package com.karendiscord.controllers;
 
+import com.karendiscord.dtos.SongDTO;
 import com.karendiscord.models.Song;
 import com.karendiscord.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,9 @@ public class SongController {
     @GetMapping("genre/{genreName}")
     public List<Song> getAllByGenreHandler(@PathVariable String genreName) {
         return songService.getAllByGenre(genreName);
+    }
+    @PostMapping
+    public Song createSong(@RequestBody SongDTO songDTO){
+        return songService.createSong(songDTO);
     }
 }

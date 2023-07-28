@@ -1,6 +1,8 @@
 package com.karendiscord;
 
 import com.karendiscord.models.*;
+import com.karendiscord.repositories.ArtistRepository;
+import com.karendiscord.repositories.GenreRepository;
 import com.karendiscord.repositories.SongRepository;
 import com.karendiscord.repositories.UserRepository;
 import com.karendiscord.services.SongService;
@@ -14,9 +16,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static org.mockito.Mockito.verify;
@@ -30,16 +34,19 @@ class MusicLibraryApplicationTests {
     public SongService songService;
     @InjectMocks
     public UserService userService;
-
     @Mock
     public SongRepository songRepository;
     @Mock
     public UserRepository userRepository;
+    @Mock
+    public ArtistRepository artistRepository;
+    @Mock
+    public GenreRepository genreRepository;
 
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        songService = new SongService(songRepository);
+        songService = new SongService(songRepository, artistRepository, genreRepository);
         userService = new UserService(userRepository);
 
     }
@@ -62,7 +69,7 @@ class MusicLibraryApplicationTests {
 
         assertEquals(expectedUser, actualUser);
 
-		verify(userRepository).findById(1);
+        verify(userRepository).findById(1);
     }
 
     @Test
@@ -74,13 +81,13 @@ class MusicLibraryApplicationTests {
         expectedUser.setUsername("Rdoolz51");
         expectedUser.setPassword("password");
 
-		when(userRepository.findByUsername("Rdoolz51")).thenReturn(Optional.of(expectedUser));
+        when(userRepository.findByUsername("Rdoolz51")).thenReturn(Optional.of(expectedUser));
 
-		User actualUser = userService.getByUsername("Rdoolz51");
-		assertNotNull(expectedUser);
-		assertEquals(expectedUser, actualUser);
+        User actualUser = userService.getByUsername("Rdoolz51");
+        assertNotNull(expectedUser);
+        assertEquals(expectedUser, actualUser);
 
-		verify(userRepository).findByUsername("Rdoolz51");
+        verify(userRepository).findByUsername("Rdoolz51");
     }
 
     @Test
