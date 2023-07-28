@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
-import java.security.Key;
 import java.util.Date;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
