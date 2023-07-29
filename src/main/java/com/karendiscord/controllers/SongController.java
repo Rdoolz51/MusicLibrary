@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("songs")
-@CrossOrigin(origins = {"http://localhost:3000", "http://127.0.0.1:5500"})
+@CrossOrigin
 public class SongController {
 
     private final SongService songService;
@@ -22,7 +22,7 @@ public class SongController {
         this.songService = songService;
     }
 
-    @GetMapping()
+    @GetMapping
     public List<Song> getAllSongsHandler() {
         return songService.getAllSongs();
     }
@@ -31,13 +31,13 @@ public class SongController {
     public Song getSongByIdHandler(@PathVariable int id) {
         return songService.getSongById(id);
     }
-    @GetMapping("artist/{artistName}")
-    public List<Song> getAllByArtistHandler(@PathVariable String artistName) {
-        return songService.getAllByArtist(artistName);
+    @GetMapping("artist/{name}")
+    public List<Song> getAllByArtistHandler(@PathVariable String name) {
+        return songService.getAllByArtist(name);
     }
-    @GetMapping("genre/{genreName}")
-    public List<Song> getAllByGenreHandler(@PathVariable String genreName) {
-        return songService.getAllByGenre(genreName);
+    @GetMapping("genre/{name}")
+    public List<Song> getAllByGenreHandler(@PathVariable String name) {
+        return songService.getAllByGenre(name);
     }
     @PostMapping
     public Song createSong(@RequestBody SongDTO songDTO){
