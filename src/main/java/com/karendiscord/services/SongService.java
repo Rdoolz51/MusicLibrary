@@ -34,12 +34,13 @@ public class SongService {
         return songRepository.findById(id).orElseThrow();
     }
     public List<Song> getAllByArtist(String artistName) {
-        return songRepository.findSongByArtist_Name(artistName).orElseThrow();
+        return songRepository.findByArtist_Name(artistName);
     }
 
     public List<Song> getAllByGenre(String genreName) {
-        return songRepository.findSongByGenre_Name(genreName).orElseThrow();
+        return songRepository.findByGenre_Name(genreName);
     }
+
 
     public Song createSong(SongDTO songDTO) {
 
@@ -61,9 +62,6 @@ public class SongService {
 
             return song;
 
-    }
-    public Artist getArtistByName(String name) {
-        return artistRepository.findByName(name);
     }
 
 

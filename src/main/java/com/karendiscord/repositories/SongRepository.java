@@ -8,8 +8,9 @@ import java.util.Optional;
 
 public interface SongRepository extends JpaRepository<Song, Integer> {
 
-    Optional <List<Song>> findSongByArtist_Name(String artistName);
+     List<Song> findByArtist_Name(String artistName);
 
-    Optional <List<Song>> findSongByGenre_Name(String genreName);
+    List<Song> findByGenre_Name(String genreName);
 
+    Optional <Song> findByTitle(String title);
 }
