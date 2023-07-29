@@ -64,5 +64,30 @@ public class SongService {
 
     }
 
+    public Song updateSong(int id, SongDTO songDTO) {
+        Song song = songRepository.findById(id).orElseThrow();
+
+        if (!artistRepository.existsByName(songDTO.getArtist())) {
+            Artist artist = new Artist(songDTO.getArtist());
+            artistRepository.save(artist);
+        }
+        if(!genreRepository.existsByName(songDTO.getGenre())){
+            Genre genre = new Genre(songDTO.getGenre());
+            genreRepository.save(genre);
+        }
+
+        song.setTitle(songDTO.getTitle());
+        song.setArtist(artistRepository.findByName(songDTO.getArtist()));
+        song.setGenre(genreRepository.findByName(songDTO.getGenre()));
+
+        songRepository.save(song);
+
+        return song;
+    }
+    public void deleteSong(int id) {
+        Song song = songRepository.findById(id).orElseThrow();
+        songRepository.delete(song);
+    }
+
 
 }

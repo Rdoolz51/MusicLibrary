@@ -4,6 +4,8 @@ import com.karendiscord.dtos.SongDTO;
 import com.karendiscord.models.Song;
 import com.karendiscord.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,4 +43,18 @@ public class SongController {
     public Song createSong(@RequestBody SongDTO songDTO){
         return songService.createSong(songDTO);
     }
+
+    @PutMapping("/{id}")
+    public Song updateSongHandler(@PathVariable int id, @RequestBody SongDTO songDTO) {
+        return songService.updateSong(id, songDTO);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteSongHandler(@PathVariable int id) {
+        String deletedSong = songService.getSongById(id).getTitle();
+        songService.deleteSong(id);
+        return new ResponseEntity<>( "Song " + deletedSong + " successfully deleted.",
+                HttpStatus.OK);
+    }
 }
+
+

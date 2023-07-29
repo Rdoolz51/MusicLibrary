@@ -83,6 +83,7 @@ class MusicLibraryApplicationTests {
         when(songRepository.findByTitle("Simple Man")).thenReturn(Optional.of(expectedSongs.get(1)));
         when(songRepository.save(any(Song.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
+
         when(userRepository.findById(1)).thenReturn(Optional.of(expectedUsers.get(0)));
         when(userRepository.findByUsername("Rdoolz51")).thenReturn(Optional.of(expectedUsers.get(0)));
 
@@ -157,4 +158,5 @@ class MusicLibraryApplicationTests {
         Assertions.assertEquals(expectedSong, returnedSong);
 
     }
+
 }
