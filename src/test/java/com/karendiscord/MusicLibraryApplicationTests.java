@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ class MusicLibraryApplicationTests {
     static RatingRepository ratingRepository;
     static SongRepository songRepository;
     static UserRepository userRepository;
+    static PasswordEncoder passwordEncoder;
 
     static SongService songService;
     static UserService userService;
@@ -44,7 +46,7 @@ class MusicLibraryApplicationTests {
         userRepository = mock(UserRepository.class);
 
         songService = new SongService(songRepository, artistRepository, genreRepository);
-        userService = new UserService(userRepository);
+        userService = new UserService(userRepository, passwordEncoder);
 
         expectedArtists = new ArrayList<>(2);
         expectedArtists.add(new Artist(1, "Eminem"));
