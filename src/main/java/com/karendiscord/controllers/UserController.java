@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("users")
-@CrossOrigin(origins = "http://dooleybootpipeline-env.eba-kukpuwjp.us-east-2.elasticbeanstalk.com/")
+@CrossOrigin
 public class UserController {
 
     private final UserService userService;

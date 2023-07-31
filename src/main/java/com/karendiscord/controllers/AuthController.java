@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("auth")
-@CrossOrigin(origins = "http://dooleybootpipeline-env.eba-kukpuwjp.us-east-2.elasticbeanstalk.com/")
+@CrossOrigin
 public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
