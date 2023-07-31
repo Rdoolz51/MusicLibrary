@@ -26,4 +26,9 @@ public class SongRating {
     @ManyToOne
     @JoinColumn(name = "rating_id")
     private Rating rating;
+
+    public SongRating(Song song, Rating rating) {
+        this.song = song;
+        this.rating = rating;
+    }
 }

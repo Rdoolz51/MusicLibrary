@@ -23,9 +23,10 @@ class MusicLibraryApplicationTests {
     static ArtistRepository artistRepository;
     static GenreRepository genreRepository;
     static PlaylistRepository playlistRepository;
-    static RatingRepository ratingRepository;
     static SongRepository songRepository;
     static UserRepository userRepository;
+    static SongRatingRepository songRatingRepository;
+    static RatingRepository ratingRepository;
     static PasswordEncoder passwordEncoder;
 
     static SongService songService;
@@ -45,7 +46,7 @@ class MusicLibraryApplicationTests {
         songRepository = mock(SongRepository.class);
         userRepository = mock(UserRepository.class);
 
-        songService = new SongService(songRepository, artistRepository, genreRepository);
+        songService = new SongService(songRepository, artistRepository, genreRepository, songRatingRepository, ratingRepository, userRepository);
         userService = new UserService(userRepository, passwordEncoder);
 
         expectedArtists = new ArrayList<>(2);

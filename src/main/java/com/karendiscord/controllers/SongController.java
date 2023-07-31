@@ -1,7 +1,10 @@
 package com.karendiscord.controllers;
 
+import com.karendiscord.dtos.RatingDTO;
 import com.karendiscord.dtos.SongDTO;
+import com.karendiscord.dtos.SongRatingDTO;
 import com.karendiscord.models.Song;
+import com.karendiscord.models.SongRating;
 import com.karendiscord.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +58,14 @@ public class SongController {
         return new ResponseEntity<>( "Song " + deletedSong + " successfully deleted.",
                 HttpStatus.OK);
     }
+
+    @PostMapping("/{id}/rating")
+    public SongRating createSongRatingHandler(@PathVariable int id, @RequestBody RatingDTO ratingDTO, SongRatingDTO songRatingDTO){
+        return songService.createSongRating(id, ratingDTO, songRatingDTO);
+    }
+
+    @GetMapping("/{id}/{userId}")
+    public List<SongRating> getAllSongRatingsHandler(@PathVariable int id, @PathVariable int userId) {
+        return songService.getAllSongRatings(id, userId);
+    }
 }
-
-
