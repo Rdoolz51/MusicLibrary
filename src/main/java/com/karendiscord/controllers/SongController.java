@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("songs")
-@CrossOrigin
+@CrossOrigin(origins = "http://dooleybootpipeline-env.eba-kukpuwjp.us-east-2.elasticbeanstalk.com/")
 public class SongController {
 
     private final SongService songService;
